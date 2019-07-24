@@ -5,16 +5,15 @@ import { connect } from "react-redux";
 import "./App.css";
 import { login, getFriends } from "./actions";
 import LoginPage from "./Components/LoginPage";
+import ProtectedComponent from "./Components/ProtectedComponent";
+import ProtectedRoute from "./Components/ProtectedRoute";
 
 class App extends React.Component {
-  componentDidMount() {
-    // this.props.getFriends();
-  }
-
   render() {
     return (
       <Router>
-        <Route exact path="/" component={LoginPage} />
+        <Route path="/login" component={LoginPage} />
+        <ProtectedRoute path="/" component={ProtectedComponent} />
       </Router>
     );
   }
@@ -22,7 +21,8 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    loggingIn: state.loggingIn
+    loggingIn: state.loggingIn,
+    friends: state.friends
   };
 };
 

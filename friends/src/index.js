@@ -3,14 +3,15 @@ import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import { rootReducer } from "./reducers";
-import logger from "redux-logger";
+// import logger from "redux-logger";
 import thunk from "redux-thunk";
+import { axiosWithAuth } from "./axiosAuth";
 
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-const store = createStore(rootReducer, applyMiddleware(thunk, logger));
+const store = createStore(rootReducer, applyMiddleware(axiosWithAuth, thunk));
 
 ReactDOM.render(
   <Provider store={store}>
